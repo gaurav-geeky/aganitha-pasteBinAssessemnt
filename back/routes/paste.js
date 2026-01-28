@@ -1,5 +1,5 @@
 import express from "express";
-import Paste from "../models/Paste.js";
+import Paste from "../models/Pastemodel.js";
 import { getNow } from "../utils/time.js";
 
 const router = express.Router();
