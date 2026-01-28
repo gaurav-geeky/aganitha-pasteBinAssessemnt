@@ -13,8 +13,10 @@ const app = express();
 
 app.use(
     cors({
-        origin: process.env.FRONTEND_URL,
-        credentials: true,
+        origin: [
+            "https://aganitha-paste-bin-assessemnt.vercel.app",
+            "http://localhost:5173",
+        ],
     })
 );
 
@@ -26,7 +28,7 @@ app.use("/home", (req, res) => {
 
 app.use("/api", healthRoutes);
 app.use("/api", pasteRoutes);
-app.use("/", pasteRoutes);
+// app.use("/", pasteRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB ✅ connected"))
