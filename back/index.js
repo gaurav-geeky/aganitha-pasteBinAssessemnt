@@ -6,7 +6,6 @@ import pasteRoutes from "./routes/paste.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-
 const app = express();
 
 // app.use(cors());
@@ -28,12 +27,11 @@ app.use("/home", (req, res) => {
 
 app.use("/api", healthRoutes);
 app.use("/api", pasteRoutes);
-// app.use("/", pasteRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB ✅ connected"))
     .catch(err => console.error("Mongo ❌ error ", err));
 
-const port = process.env.PORT;
+const port = process.env.PORT || 4500;
 app.listen(port, () => console.log(`Server running at port http://localhost:${port}`));
 
