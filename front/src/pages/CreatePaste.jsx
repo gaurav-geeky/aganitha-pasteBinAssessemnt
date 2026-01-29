@@ -23,7 +23,7 @@ export default function CreatePaste() {
             };
 
             const res = await api.post("/api/pastes", payload);
-            setLink(res.data.url);
+            setLink(`${window.location.origin}/p/${res.data.id}`);
             setContent("");
             setTtl("");
             setMaxViews("");
