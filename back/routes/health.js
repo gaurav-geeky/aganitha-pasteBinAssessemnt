@@ -10,3 +10,19 @@ router.get("/healthz", async (req, res) => {
 
 export default router;
 
+
+
+/*
+
+TTL logic
+...(ttl && { ttl_seconds: Number(ttl) })
+
+
+Meaning:
+
+If ttl is empty → ❌ don’t send anything
+
+If ttl has value → ✅ send:
+
+*/
+

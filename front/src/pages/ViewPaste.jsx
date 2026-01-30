@@ -35,5 +35,7 @@ export default function ViewPaste() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
-  return <pre>{content}</pre>;
+  return (
+    <pre>my content : {content}</pre>
+  );
 }
