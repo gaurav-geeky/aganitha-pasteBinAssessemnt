@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import api from "../api/axios";
+import axios from "axios";
+
 
 export default function ViewPaste() {
   const { id } = useParams();
@@ -8,28 +9,23 @@ export default function ViewPaste() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    let cancelled = false;
+ 
 
+   useEffect(() => {
     async function loadPaste() {
       try {
-        const res = await api.get(`/api/pastes/${id}`);
-        if (!cancelled) {
-          setContent(res.data.content);
-        }
-      } catch {
-        if (!cancelled) {
-          setError("Paste not found or expired");
-        }
+        const api = `${import.meta.env.VITE_BACKEND_URL}/api/pastes/${id}`;
+        const res = await axios.get(api);
+        setContent(res.data?.content || "");
+      } catch (err) {
+        console.error(err);
+        setError("Paste not found or expired");
       } finally {
-        if (!cancelled) setLoading(false);
+        setLoading(false);
       }
     }
 
     loadPaste();
-    return () => {
-      cancelled = true;
-    };
   }, [id]);
 
   /* Loading */
